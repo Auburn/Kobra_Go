@@ -98,6 +98,7 @@ void restore_trinamic_drivers();
 void reset_trinamic_drivers();
 
 #define AXIS_HAS_SQUARE_WAVE(A) (AXIS_IS_TMC(A) && ENABLED(SQUARE_WAVE_STEPPING))
+#define AXIS_HAS_SQUARE_WAVE_E(A) (AXIS_IS_TMC(A) && ENABLED(SQUARE_WAVE_STEPPING_E))
 
 // X Stepper
 #if AXIS_IS_TMC(X)
@@ -238,7 +239,7 @@ void reset_trinamic_drivers();
     #define E0_ENABLE_WRITE(STATE) stepperE0.toff((STATE)==E_ENABLE_ON ? chopper_timing_E0.toff : 0)
     #define E0_ENABLE_READ() stepperE0.isEnabled()
   #endif
-  #if AXIS_HAS_SQUARE_WAVE(E0)
+  #if AXIS_HAS_SQUARE_WAVE_E(E0)
     #define E0_STEP_WRITE(STATE) do{ if(STATE) TOGGLE(E0_STEP_PIN); }while(0)
   #endif
 #endif
@@ -255,7 +256,7 @@ void reset_trinamic_drivers();
     #define E1_ENABLE_WRITE(STATE) stepperE1.toff((STATE)==E_ENABLE_ON ? chopper_timing_E1.toff : 0)
     #define E1_ENABLE_READ() stepperE1.isEnabled()
   #endif
-  #if AXIS_HAS_SQUARE_WAVE(E1)
+  #if AXIS_HAS_SQUARE_WAVE_E(E1)
     #define E1_STEP_WRITE(STATE) do{ if(STATE) TOGGLE(E1_STEP_PIN); }while(0)
   #endif
 #endif
@@ -272,7 +273,7 @@ void reset_trinamic_drivers();
     #define E2_ENABLE_WRITE(STATE) stepperE2.toff((STATE)==E_ENABLE_ON ? chopper_timing_E2.toff : 0)
     #define E2_ENABLE_READ() stepperE2.isEnabled()
   #endif
-  #if AXIS_HAS_SQUARE_WAVE(E2)
+  #if AXIS_HAS_SQUARE_WAVE_E(E2)
     #define E2_STEP_WRITE(STATE) do{ if(STATE) TOGGLE(E2_STEP_PIN); }while(0)
   #endif
 #endif
@@ -289,7 +290,7 @@ void reset_trinamic_drivers();
     #define E3_ENABLE_WRITE(STATE) stepperE3.toff((STATE)==E_ENABLE_ON ? chopper_timing_E3.toff : 0)
     #define E3_ENABLE_READ() stepperE3.isEnabled()
   #endif
-  #if AXIS_HAS_SQUARE_WAVE(E3)
+  #if AXIS_HAS_SQUARE_WAVE_E(E3)
     #define E3_STEP_WRITE(STATE) do{ if(STATE) TOGGLE(E3_STEP_PIN); }while(0)
   #endif
 #endif
@@ -306,7 +307,7 @@ void reset_trinamic_drivers();
     #define E4_ENABLE_WRITE(STATE) stepperE4.toff((STATE)==E_ENABLE_ON ? chopper_timing_E4.toff : 0)
     #define E4_ENABLE_READ() stepperE4.isEnabled()
   #endif
-  #if AXIS_HAS_SQUARE_WAVE(E4)
+  #if AXIS_HAS_SQUARE_WAVE_E(E4)
     #define E4_STEP_WRITE(STATE) do{ if(STATE) TOGGLE(E4_STEP_PIN); }while(0)
   #endif
 #endif
@@ -323,7 +324,7 @@ void reset_trinamic_drivers();
     #define E5_ENABLE_WRITE(STATE) stepperE5.toff((STATE)==E_ENABLE_ON ? chopper_timing_E5.toff : 0)
     #define E5_ENABLE_READ() stepperE5.isEnabled()
   #endif
-  #if AXIS_HAS_SQUARE_WAVE(E5)
+  #if AXIS_HAS_SQUARE_WAVE_E(E5)
     #define E5_STEP_WRITE(STATE) do{ if(STATE) TOGGLE(E5_STEP_PIN); }while(0)
   #endif
 #endif
@@ -340,7 +341,7 @@ void reset_trinamic_drivers();
     #define E6_ENABLE_WRITE(STATE) stepperE6.toff((STATE)==E_ENABLE_ON ? chopper_timing_E6.toff : 0)
     #define E6_ENABLE_READ() stepperE6.isEnabled()
   #endif
-  #if AXIS_HAS_SQUARE_WAVE(E6)
+  #if AXIS_HAS_SQUARE_WAVE_E(E6)
     #define E6_STEP_WRITE(STATE) do{ if(STATE) TOGGLE(E6_STEP_PIN); }while(0)
   #endif
 #endif
@@ -357,7 +358,7 @@ void reset_trinamic_drivers();
     #define E7_ENABLE_WRITE(STATE) stepperE7.toff((STATE)==E_ENABLE_ON ? chopper_timing_E7.toff : 0)
     #define E7_ENABLE_READ() stepperE7.isEnabled()
   #endif
-  #if AXIS_HAS_SQUARE_WAVE(E7)
+  #if AXIS_HAS_SQUARE_WAVE_E(E7)
     #define E7_STEP_WRITE(STATE) do{ if(STATE) TOGGLE(E7_STEP_PIN); }while(0)
   #endif
 #endif

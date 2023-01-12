@@ -141,7 +141,14 @@ enum StealthIndex : uint8_t { STEALTH_AXIS_XY, STEALTH_AXIS_Z, STEALTH_AXIS_E };
     chopconf.intpol = interpolate;
     chopconf.hend = chop_init.hend + 3;
     chopconf.hstrt = chop_init.hstrt - 1;
-    TERN_(SQUARE_WAVE_STEPPING, chopconf.dedge = true);
+    if(AXIS_LETTER == 'E')
+    {
+      TERN_(SQUARE_WAVE_STEPPING_E, chopconf.dedge = true);			
+    }
+    else
+    {
+      TERN_(SQUARE_WAVE_STEPPING, chopconf.dedge = true);			
+    }
     st.CHOPCONF(chopconf.sr);
 
     st.rms_current(mA, HOLD_MULTIPLIER);
@@ -176,7 +183,14 @@ enum StealthIndex : uint8_t { STEALTH_AXIS_XY, STEALTH_AXIS_Z, STEALTH_AXIS_E };
     chopconf.intpol = interpolate;
     chopconf.hend = chop_init.hend + 3;
     chopconf.hstrt = chop_init.hstrt - 1;
-    TERN_(SQUARE_WAVE_STEPPING, chopconf.dedge = true);
+    if(AXIS_LETTER == 'E')
+    {
+      TERN_(SQUARE_WAVE_STEPPING_E, chopconf.dedge = true);			
+    }
+    else
+    {
+      TERN_(SQUARE_WAVE_STEPPING, chopconf.dedge = true);			
+    }
     st.CHOPCONF(chopconf.sr);
 
     st.rms_current(mA, HOLD_MULTIPLIER);
@@ -497,7 +511,14 @@ enum StealthIndex : uint8_t { STEALTH_AXIS_XY, STEALTH_AXIS_Z, STEALTH_AXIS_E };
       chopconf.hend = chop_init.hend + 3;
       chopconf.hstrt = chop_init.hstrt - 1;
 		  chopconf.diss2vs = 1;   //open protect
-      TERN_(SQUARE_WAVE_STEPPING, chopconf.dedge = true);			
+      if(AXIS_LETTER == 'E')
+      {
+        TERN_(SQUARE_WAVE_STEPPING_E, chopconf.dedge = true);			
+      }
+      else
+      {
+        TERN_(SQUARE_WAVE_STEPPING, chopconf.dedge = true);			
+      }
       st.CHOPCONF(chopconf.sr);
 			
 			TMC2208_n::GCONF_t gconf = {0};
@@ -569,7 +590,14 @@ enum StealthIndex : uint8_t { STEALTH_AXIS_XY, STEALTH_AXIS_Z, STEALTH_AXIS_E };
     chopconf.intpol = interpolate;
     chopconf.hend = chop_init.hend + 3;
     chopconf.hstrt = chop_init.hstrt - 1;
-    TERN_(SQUARE_WAVE_STEPPING, chopconf.dedge = true);
+    if(AXIS_LETTER == 'E')
+    {
+      TERN_(SQUARE_WAVE_STEPPING_E, chopconf.dedge = true);			
+    }
+    else
+    {
+      TERN_(SQUARE_WAVE_STEPPING, chopconf.dedge = true);			
+    }
     st.CHOPCONF(chopconf.sr);
 
     st.rms_current(mA, HOLD_MULTIPLIER);
@@ -609,7 +637,14 @@ enum StealthIndex : uint8_t { STEALTH_AXIS_XY, STEALTH_AXIS_Z, STEALTH_AXIS_E };
     st.sdoff(0);
     st.rms_current(mA);
     st.microsteps(microsteps);
-    TERN_(SQUARE_WAVE_STEPPING, st.dedge(true));
+    if(AXIS_LETTER == 'E')
+    {
+      TERN_(SQUARE_WAVE_STEPPING_E, chopconf.dedge = true);			
+    }
+    else
+    {
+      TERN_(SQUARE_WAVE_STEPPING, chopconf.dedge = true);			
+    }
     st.intpol(interpolate);
     st.diss2g(true); // Disable short to ground protection. Too many false readings?
     TERN_(TMC_DEBUG, st.rdsel(0b01));
@@ -627,7 +662,14 @@ enum StealthIndex : uint8_t { STEALTH_AXIS_XY, STEALTH_AXIS_Z, STEALTH_AXIS_E };
     chopconf.intpol = interpolate;
     chopconf.hend = chop_init.hend + 3;
     chopconf.hstrt = chop_init.hstrt - 1;
-    TERN_(SQUARE_WAVE_STEPPING, chopconf.dedge = true);
+    if(AXIS_LETTER == 'E')
+    {
+      TERN_(SQUARE_WAVE_STEPPING_E, chopconf.dedge = true);			
+    }
+    else
+    {
+      TERN_(SQUARE_WAVE_STEPPING, chopconf.dedge = true);			
+    }
     st.CHOPCONF(chopconf.sr);
 
     st.rms_current(mA, HOLD_MULTIPLIER);
@@ -662,7 +704,14 @@ enum StealthIndex : uint8_t { STEALTH_AXIS_XY, STEALTH_AXIS_Z, STEALTH_AXIS_E };
     chopconf.intpol = interpolate;
     chopconf.hend = chop_init.hend + 3;
     chopconf.hstrt = chop_init.hstrt - 1;
-    TERN_(SQUARE_WAVE_STEPPING, chopconf.dedge = true);
+    if(AXIS_LETTER == 'E')
+    {
+      TERN_(SQUARE_WAVE_STEPPING_E, chopconf.dedge = true);			
+    }
+    else
+    {
+      TERN_(SQUARE_WAVE_STEPPING, chopconf.dedge = true);			
+    }
     st.CHOPCONF(chopconf.sr);
 
     st.rms_current(mA, HOLD_MULTIPLIER);
