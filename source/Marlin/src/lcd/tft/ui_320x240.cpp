@@ -446,15 +446,15 @@ void MarlinUI::draw_status_screen(char seclect) {
 //    }
 //    else
 //    {
-//       if(busy)    //ÕýÔÚ´òÓ¡ÖÐ
+//       if(busy)    //ï¿½ï¿½ï¿½Ú´ï¿½Ó¡ï¿½ï¿½
 //       {
 //         color=COLOR_ORANGE;
 //       }
-//       else if(Paused)      //ÔÝÍ£ÖÐ
+//       else if(Paused)      //ï¿½ï¿½Í£ï¿½ï¿½
 //       {
 //         color=COLOR_GREEN; 
 //       }
-//       else          //Ñ¹¸ù¾ÍÃ»ÓÐ´òÓ¡
+//       else          //Ñ¹ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð´ï¿½Ó¡
 //       {
 //         color=COLOR_GREY;
 //       }
@@ -463,17 +463,21 @@ void MarlinUI::draw_status_screen(char seclect) {
 //      tft.add_image(0, 0, imgPause, color);
 //    }
 
-       if(busy)    //ÕýÔÚ´òÓ¡ÖÐ
+       if(busy)    //ï¿½ï¿½ï¿½Ú´ï¿½Ó¡ï¿½ï¿½
        {
          color=COLOR_ORANGE;
        }
-       else if(Paused)      //ÔÝÍ£ÖÐ
+       else if(Paused)      //ï¿½ï¿½Í£ï¿½ï¿½
        {
          color=COLOR_GREEN; 
        }
-       else          //Ñ¹¸ù¾ÍÃ»ÓÐ´òÓ¡
+       else          //Ñ¹ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð´ï¿½Ó¡
        {
-         color=COLOR_GREY;
+#ifdef ACTION_ON_START
+         color=COLOR_GREEN;
+#else
+         color=COLOR_GREY; 
+#endif
        }
        tft.canvas(185, 140, 50, 50);
       tft.set_background(COLOR_BACKGROUND);
@@ -493,15 +497,15 @@ void MarlinUI::draw_status_screen(char seclect) {
 //    }
 //    else
 //    {
-//       if(busy)    //ÕýÔÚ´òÓ¡ÖÐ
+//       if(busy)    //ï¿½ï¿½ï¿½Ú´ï¿½Ó¡ï¿½ï¿½
 //       {
 //         color=COLOR_RED;
 //       }
-//       else if(Paused)      //ÔÝÍ£ÖÐ
+//       else if(Paused)      //ï¿½ï¿½Í£ï¿½ï¿½
 //       {
 //         color=COLOR_RED; 
 //       }
-//       else          //Ñ¹¸ù¾ÍÃ»ÓÐ´òÓ¡
+//       else          //Ñ¹ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð´ï¿½Ó¡
 //       {
 //         color=COLOR_GREY;
 //       }
@@ -510,15 +514,15 @@ void MarlinUI::draw_status_screen(char seclect) {
 //      tft.add_image(0, 0, imgStop, color);     
 //    }
 
-       if(busy)    //ÕýÔÚ´òÓ¡ÖÐ
+       if(busy)    //ï¿½ï¿½ï¿½Ú´ï¿½Ó¡ï¿½ï¿½
        {
          color=COLOR_RED;
        }
-       else if(Paused)      //ÔÝÍ£ÖÐ
+       else if(Paused)      //ï¿½ï¿½Í£ï¿½ï¿½
        {
          color=COLOR_RED; 
        }
-       else          //Ñ¹¸ù¾ÍÃ»ÓÐ´òÓ¡
+       else          //Ñ¹ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð´ï¿½Ó¡
        {
          color=COLOR_GREY;
        }

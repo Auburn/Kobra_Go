@@ -1089,6 +1089,16 @@
               <FileType>5</FileType>
               <FilePath>..\source\Marlin\src\feature\bltouch.h</FilePath>
             </File>
+            <File>
+              <FileName>host_actions.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\source\Marlin\src\feature\host_actions.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>host_actions.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\source\Marlin\src\feature\host_actions.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
