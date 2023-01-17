@@ -5,6 +5,7 @@ I've added/enabled several features to make printing from Octoprint a better exp
 ## Extra Features
 
 - Enable "Quick Home", home X & Y at the same time
+- Increased default max acceleration limits
 - Enable M117 Gcode for setting messages to printer screen
 - Enable M73 Gcode for setting progress bar on printer screen
 
@@ -21,6 +22,13 @@ Experimental, I've found that enabling linear advance can cause the extruder to 
 
 Allows starting/pausing/resuming of Octoprint prints
 
-##Notes
+- Increase probing accuracy by doing multiple probes per point
+- Enabled UBL bed leveling instead of bilinear (unstable)
+
+This mostly works, some parts of the LCD UI have navigation issues so it's recommended to do setup UBL through GCode.
+Saving UBL meshes is what caused the most issues, they seem to get corrupted when saved to the EEPROM so avoid doing this.
+Instead you can save it to GCode using `G29 S-1`
+
+## Notes
 
 You will need to recalibrate your E steps after applying this firmware it will be off by a factor of ~2
