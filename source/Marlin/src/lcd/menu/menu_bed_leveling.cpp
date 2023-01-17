@@ -314,6 +314,7 @@ void cancel_leveing() {
 //	LCD_MESSAGEPGM(MSG_CANCEL_LEVEING);
 	ui.return_to_status();
 }
+
 /**
  * Step 1: Bed Level entry-point
  *
@@ -333,71 +334,59 @@ void menu_bed_leveling() {
              is_valid = leveling_is_valid();
 
   START_MENU();
-  BACK_ITEM(MSG_BACK);
+  BACK_ITEM(MSG_MOTION);
 
   // Auto Home if not using manual probing
-//  #if NONE(PROBE_MANUALLY, MESH_BED_LEVELING)
-//    if (!is_homed) GCODES_ITEM(MSG_AUTO_HOME, G28_STR);
-//  #endif
+  #if NONE(PROBE_MANUALLY, MESH_BED_LEVELING)
+    if (!is_homed) GCODES_ITEM(MSG_AUTO_HOME, G28_STR);
+  #endif
 
   // Level Bed
-//  #if EITHER(PROBE_MANUALLY, MESH_BED_LEVELING)
-//    // Manual leveling uses a guided procedure
-//    SUBMENU(MSG_LEVEL_BED, _lcd_level_bed_continue);
-//  #else
-//    // Automatic leveling can just run the G-code    injectCommands_P(PSTR("M851 Z0\nG28\nG29"));
-//    GCODES_ITEM(MSG_LEVEL_BED, is_homed ? PSTR("G29") : PSTR("G29N"));
-
-//  #endif
-//  GCODES_ITEM(MSG_LEVEL_BED, is_homed ? PSTR("M851 Z0\nG29") : PSTR("M851 Z0\nG29N"));
-     SUBMENU(MSG_LEVEL_BED, begin_bed_lever);
-     //GCODES_ITEM(MSG_LEVEL_BED, PSTR("M851 Z0\nG28\nG29\n M500"));
+  #if EITHER(PROBE_MANUALLY, MESH_BED_LEVELING)
+    // Manual leveling uses a guided procedure
+    SUBMENU(MSG_LEVEL_BED, _lcd_level_bed_continue);
+  #else
+    // Automatic leveling can just run the G-code
+    GCODES_ITEM(MSG_LEVEL_BED, is_homed ? PSTR("G29") : PSTR("G29N"));
+  #endif
 
   #if ENABLED(MESH_EDIT_MENU)
     if (is_valid) SUBMENU(MSG_EDIT_MESH, menu_edit_mesh);
   #endif
 
   // Homed and leveling is valid? Then leveling can be toggled.
-//  if (is_homed && is_valid) {
-//    bool show_state = planner.leveling_active;
-//    EDIT_ITEM(bool, MSG_BED_LEVELING, &show_state, _lcd_toggle_bed_leveling);
-//  }
+  if (is_homed && is_valid) {
+    bool show_state = planner.leveling_active;
+    EDIT_ITEM(bool, MSG_BED_LEVELING, &show_state, _lcd_toggle_bed_leveling);
+  }
 
-//  // Z Fade Height
-//  #if ENABLED(ENABLE_LEVELING_FADE_HEIGHT)
-//    // Shadow for editing the fade height
-//    editable.decimal = planner.z_fade_height;
-//    EDIT_ITEM_FAST(float3, MSG_Z_FADE_HEIGHT, &editable.decimal, 0, 100, []{ set_z_fade_height(editable.decimal); });
-//  #endif
+  // Z Fade Height
+  #if ENABLED(ENABLE_LEVELING_FADE_HEIGHT)
+    // Shadow for editing the fade height
+    editable.decimal = planner.z_fade_height;
+    EDIT_ITEM_FAST(float3, MSG_Z_FADE_HEIGHT, &editable.decimal, 0, 100, []{ set_z_fade_height(editable.decimal); });
+  #endif
 
   //
   // Mesh Bed Leveling Z-Offset
   //
   #if ENABLED(MESH_BED_LEVELING)
-    #if WITHIN(Z_PROBE_OFFSET_RANGE_MIN, -9, 9)
-      #define LCD_Z_OFFSET_TYPE float43    // Values from -9.000 to +9.000
-    #else
-      #define LCD_Z_OFFSET_TYPE float42_52 // Values from -99.99 to 99.99
-    #endif
-    EDIT_ITEM(LCD_Z_OFFSET_TYPE, MSG_BED_Z, &mbl.z_offset, Z_PROBE_OFFSET_RANGE_MIN, Z_PROBE_OFFSET_RANGE_MAX);
+    EDIT_ITEM(float43, MSG_BED_Z, &mbl.z_offset, -1, 1);
   #endif
 
   #if ENABLED(BABYSTEP_ZPROBE_OFFSET)
     SUBMENU(MSG_ZPROBE_ZOFFSET, lcd_babystep_zoffset);
   #elif HAS_BED_PROBE
     EDIT_ITEM(LCD_Z_OFFSET_TYPE, MSG_ZPROBE_ZOFFSET, &probe.offset.z, Z_PROBE_OFFSET_RANGE_MIN, Z_PROBE_OFFSET_RANGE_MAX);
-  //  EDIT_ITEM_FAST(float42_52,   MSG_ZPROBE_ZOFFSET, &probe.offset.z, Z_PROBE_OFFSET_RANGE_MIN, Z_PROBE_OFFSET_RANGE_MAX, []{ Save_probe_Z_offset(); });
   #endif
 
   #if ENABLED(LEVEL_BED_CORNERS)
-    SUBMENU(MSG_BED_TRAMMING, _lcd_level_bed_corners);
+    SUBMENU(MSG_LEVEL_CORNERS, _lcd_level_bed_corners);
   #endif
-  
-  //SUBMENU(MSG_CANCEL_LEVEING, cancel_leveing);
 
   #if ENABLED(EEPROM_SETTINGS)
-    //ACTION_ITEM(MSG_LOAD_EEPROM, ui.load_settings);
-    //ACTION_ITEM(MSG_STORE_EEPROM, ui.store_settings);
+    ACTION_ITEM(MSG_LOAD_EEPROM, ui.load_settings);
+    ACTION_ITEM(MSG_STORE_EEPROM, ui.store_settings);
   #endif
   END_MENU();
 }

@@ -892,7 +892,7 @@ void MenuItem_confirm::draw_select_screen(PGM_P const yes, PGM_P const no, const
 
     for (uint16_t x = 0; x < (GRID_MAX_POINTS_X); x++)
       for (uint16_t y = 0; y < (GRID_MAX_POINTS_Y); y++)
-        if (position_is_reachable({ ubl.mesh_index_to_xpos(x), ubl.mesh_index_to_ypos(y) }))
+        if (position_is_reachable({{{ ubl.mesh_index_to_xpos(x), ubl.mesh_index_to_ypos(y) }}}))
           tft.add_bar(1 + (x * 2 + 1) * (GRID_WIDTH - 4) / (GRID_MAX_POINTS_X) / 2, GRID_HEIGHT - 3 - ((y * 2 + 1) * (GRID_HEIGHT - 4) / (GRID_MAX_POINTS_Y) / 2), 2, 2, COLOR_UBL);
 
     tft.add_rectangle((x_plot * 2 + 1) * (GRID_WIDTH - 4) / (GRID_MAX_POINTS_X) / 2 - 1, GRID_HEIGHT - 5 - ((y_plot * 2 + 1) * (GRID_HEIGHT - 4) / (GRID_MAX_POINTS_Y) / 2), 6, 6, COLOR_UBL);

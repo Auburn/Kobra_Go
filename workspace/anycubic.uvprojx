@@ -1099,6 +1099,36 @@
               <FileType>5</FileType>
               <FilePath>..\source\Marlin\src\feature\host_actions.h</FilePath>
             </File>
+            <File>
+              <FileName>ubl.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\source\Marlin\src\feature\bedlevel\ubl\ubl.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ubl.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\source\Marlin\src\feature\bedlevel\ubl\ubl.h</FilePath>
+            </File>
+            <File>
+              <FileName>ubl_G29.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\source\Marlin\src\feature\bedlevel\ubl\ubl_G29.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ubl_motion.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\source\Marlin\src\feature\bedlevel\ubl\ubl_motion.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>G29.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\source\Marlin\src\gcode\bedlevel\ubl\G29.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>M421.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\source\Marlin\src\gcode\bedlevel\ubl\M421.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2268,6 +2298,16 @@
               <FileName>dtostrf.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\source\Marlin\src\libs\dtostrf.h</FilePath>
+            </File>
+            <File>
+              <FileName>least_squares_fit.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\source\Marlin\src\libs\least_squares_fit.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>least_squares_fit.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\source\Marlin\src\libs\least_squares_fit.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -223,7 +223,7 @@ struct XYval {
   FI operator T* ()                                     { return pos; }
   FI operator bool()                                    { return x || y; }
   FI XYval<T>           copy()                    const { return *this; }
-  FI XYval<T>            ABS()                    const { return { T(_ABS(x)), T(_ABS(y)) }; }
+  FI XYval<T>            ABS()                    const { return {{{ T(_ABS(x)), T(_ABS(y)) }}}; }
   FI XYval<int16_t>    asInt()                          { return { int16_t(x), int16_t(y) }; }
   FI XYval<int16_t>    asInt()                    const { return { int16_t(x), int16_t(y) }; }
   FI XYval<int32_t>   asLong()                          { return { int32_t(x), int32_t(y) }; }
@@ -231,7 +231,7 @@ struct XYval {
   FI XYval<int32_t>   ROUNDL()                          { return { int32_t(LROUND(x)), int32_t(LROUND(y)) }; }
   FI XYval<int32_t>   ROUNDL()                    const { return { int32_t(LROUND(x)), int32_t(LROUND(y)) }; }
   FI XYval<float>    asFloat()                          { return {   float(x),   float(y) }; }
-  FI XYval<float>    asFloat()                    const { return {   float(x),   float(y) }; }
+  FI XYval<float>    asFloat()                    const { return {{{ float(x),   float(y) }}}; }
   FI XYval<float> reciprocal()                    const { return {  _RECIP(x),  _RECIP(y) }; }
   FI XYval<float>  asLogical()                    const { XYval<float> o = asFloat(); toLogical(o); return o; }
   FI XYval<float>   asNative()                    const { XYval<float> o = asFloat(); toNative(o);  return o; }

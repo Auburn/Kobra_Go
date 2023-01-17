@@ -418,8 +418,8 @@ void menu_move() {
 
 #if ENABLED(AUTO_BED_LEVELING_UBL)
   void _lcd_ubl_level_bed();
-//#elif ENABLED(LCD_BED_LEVELING)
-//  void menu_bed_leveling();
+#elif ENABLED(LCD_BED_LEVELING)
+  void menu_bed_leveling();
 #endif
 
 #if ENABLED(ASSISTED_TRAMMING_WIZARD)
@@ -559,7 +559,7 @@ void menu_motion() {
   //
  
   #if HAS_TEMPERATURE
-    SUBMENU(MSG_TEMPERATURE, menu_temperature);   //ÎÂ¶È·Åµ½¹¤¾ß
+    SUBMENU(MSG_TEMPERATURE, menu_temperature);   //ï¿½Â¶È·Åµï¿½ï¿½ï¿½ï¿½ï¿½
   #endif
   
  
@@ -567,7 +567,7 @@ void menu_motion() {
   END_MENU();
 }
 
-//********************µç»úÒÆ¶¯×¨ÓÃ**********************
+//********************ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½×¨ï¿½ï¿½**********************
 void LCD_goto_manual_move(const_float_t scale,const AxisEnum axis) {
   ui.defer_status_screen();
   ui.manual_move.menu_scale = 0.1;

@@ -53,7 +53,7 @@
 // EEPROM
 //
 #define FLASH_EEPROM_EMULATION
-#define MARLIN_EEPROM_SIZE              0x2000  // 4KB
+#define MARLIN_EEPROM_SIZE              0x800  // 2KB
 
 //
 // Limit Switches

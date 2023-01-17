@@ -94,6 +94,11 @@
     typedef void (*screenFunc_t)();
     typedef void (*menuAction_t)();
 
+    #if ENABLED(AUTO_BED_LEVELING_UBL)
+      void lcd_mesh_edit_setup(const float &initial);
+      float lcd_mesh_edit();
+    #endif
+
   #endif // HAS_LCD_MENU
 
 #endif // HAS_WIRED_LCD

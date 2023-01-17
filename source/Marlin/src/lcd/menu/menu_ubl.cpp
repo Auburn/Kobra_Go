@@ -88,6 +88,14 @@ void _lcd_mesh_fine_tune(PGM_P const msg) {
   }
 }
 
+float lcd_mesh_edit() { return rounded_mesh_value(); }
+
+void lcd_mesh_edit_setup(const float &initial) {
+  TERN_(HAS_GRAPHICAL_TFT, ui.clear_lcd());
+  mesh_edit_accumulator = initial;
+  ui.goto_screen([]{ _lcd_mesh_fine_tune(GET_TEXT(MSG_MESH_EDIT_Z)); });
+}
+
 //
 // Init mesh editing and go to the fine tuning screen (ubl.fine_tune_mesh)
 // To capture encoder events UBL will also call ui.capture and ui.release.
@@ -428,7 +436,7 @@ void ubl_map_move_to_xy() {
 
   // Use the built-in manual move handler to move to the mesh point.
   ui.manual_move.set_destination(xy);
-  ui.manual_move.soon(ALL_AXES_ENUM);
+  ui.manual_move.soon(ALL_AXES);
 }
 
 inline int32_t grid_index(const uint8_t x, const uint8_t y) {

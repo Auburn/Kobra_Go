@@ -112,6 +112,9 @@ void menu_configuration();
   void menu_language();
 #endif
 
+#if ENABLED(AUTO_BED_LEVELING_UBL)
+  void _lcd_ubl_level_bed();
+#endif
 
 #if ENABLED(CUSTOM_MENU_MAIN)
 
@@ -279,7 +282,7 @@ void menu_main() {
   ;
 
   START_MENU();
-  BACK_ITEM(MSG_INFO_SCREEN);   //·Åµ½µ¹ÊýµÚ¶þ  
+  BACK_ITEM(MSG_INFO_SCREEN);   //ï¿½Åµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½  
 
   if (busy) {
     #if MACHINE_CAN_PAUSE
@@ -305,7 +308,7 @@ void menu_main() {
     #if ENABLED(CANCEL_OBJECTS) && DISABLED(SLIM_LCD_MENUS)
       SUBMENU(MSG_CANCEL_OBJECT, []{ editable.int8 = -1; ui.goto_screen(menu_cancelobject); });
     #endif
-	 //BACK_ITEM(MSG_INFO_SCREEN);    //ÐÅÏ¢½çÃæ
+	 //BACK_ITEM(MSG_INFO_SCREEN);    //ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½
   }
   else {
   	
@@ -334,13 +337,18 @@ void menu_main() {
     #endif
     
   //  SUBMENU(MSG_TUNE, menu_tune);
-    SUBMENU(MSG_BED_LEVELING, menu_bed_leveling);
+  #if ENABLED(AUTO_BED_LEVELING_UBL)
+    SUBMENU(MSG_UBL_LEVEL_BED, _lcd_ubl_level_bed);
+
+  #elif ENABLED(LCD_BED_LEVELING)
+      SUBMENU(MSG_BED_LEVELING, menu_bed_leveling);
+  #endif
     SUBMENU(MSG_PREPARE, menu_ready);
     //SUBMENU(Operate_MSG, menu_motion);
     SUBMENU(MSG_CONFIGURATION, menu_configuration);
 	
 		
-  //BACK_ITEM(MSG_INFO_SCREEN);    //ÐÅÏ¢½çÃæ
+  //BACK_ITEM(MSG_INFO_SCREEN);    //ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½
   #if HAS_MULTI_LANGUAGE
     SUBMENU(LANGUAGE_choose, menu_language);   //LANGUAGE
   #endif
@@ -353,7 +361,7 @@ void menu_main() {
 //  #endif
 
 //  #if HAS_TEMPERATURE
-//    SUBMENU(MSG_TEMPERATURE, menu_temperature);   //ÎÂ¶È·Åµ½¹¤¾ß
+//    SUBMENU(MSG_TEMPERATURE, menu_temperature);   //ï¿½Â¶È·Åµï¿½ï¿½ï¿½ï¿½ï¿½
 //  #endif
 
 //  #if HAS_POWER_MONITOR
@@ -380,7 +388,7 @@ void menu_main() {
 //    }
 //  #endif
 
-//  #if ENABLED(ADVANCED_PAUSE_FEATURE)                //¸ü»»ºÄ²Ä¸Äµ½ÄÇ¸ö×¼±¸½çÃæ
+//  #if ENABLED(ADVANCED_PAUSE_FEATURE)                //ï¿½ï¿½ï¿½ï¿½ï¿½Ä²Ä¸Äµï¿½ï¿½Ç¸ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //    #if E_STEPPERS == 1 && DISABLED(FILAMENT_LOAD_UNLOAD_GCODES)
 //      YESNO_ITEM(MSG_FILAMENTCHANGE,
 //        menu_change_filament, ui.goto_previous_screen,
@@ -500,7 +508,7 @@ void preheat_ABS()
    
 //    if (!g29_in_progress)
 //      SUBMENU(MSG_BED_LEVELING, menu_bed_leveling);
-//*********************Ô¤ÈÈ***************************************
+//*********************Ô¤ï¿½ï¿½***************************************
   
 	SUBMENU(MSG_PREHEAT_PLA,preheat_pla);
 	SUBMENU(MSG_PREHEAT_ABS,preheat_ABS);
@@ -518,8 +526,8 @@ void preheat_ABS()
 //      #endif
 //    }
 //  #endif
- //************************»»Ë¿****************************************** 
-//   #if ENABLED(ADVANCED_PAUSE_FEATURE)                //»»Ë¿
+ //************************ï¿½ï¿½Ë¿****************************************** 
+//   #if ENABLED(ADVANCED_PAUSE_FEATURE)                //ï¿½ï¿½Ë¿
 //    #if E_STEPPERS == 1 && DISABLED(FILAMENT_LOAD_UNLOAD_GCODES)
 //      YESNO_ITEM(MSG_FILAMENTCHANGE,
 //        menu_change_filament, ui.goto_previous_screen,
