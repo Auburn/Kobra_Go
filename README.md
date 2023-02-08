@@ -32,3 +32,7 @@ Instead you can save it to GCode using `G29 S-1`
 ## Notes
 
 You will need to recalibrate your E steps after applying this firmware it will be off by a factor of ~2
+
+## Building
+
+https://www.reddit.com/r/anycubic/comments/y2waxu/tutorial_how_to_build_anycubic_marlin_source_code/
