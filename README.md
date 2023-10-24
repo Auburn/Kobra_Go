@@ -1,4 +1,4 @@
-# Modified Kobra Go Firmware
+# Modified Kobra Go Firmware.
 
 I've added/enabled several features to make printing from Octoprint a better experience
 
