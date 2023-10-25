@@ -140,9 +140,11 @@
 #endif
 
 constexpr float g26_e_axis_feedrate = 0.025;
+float g26_random_d = random (0,50);
 
 static MeshFlags circle_flags, horizontal_mesh_line_flags, vertical_mesh_line_flags;
-float g26_random_deviation = 0.0;
+
+
 
 static bool g26_retracted = false; // Track the retracted state of the nozzle so mismatched
                                    // retracts/recovers won't result in a bad state.
@@ -194,8 +196,7 @@ mesh_index_pair find_closest_circle_to_print(const xy_pos_t &pos) {
       // distance calculation to help it choose a better place to continue.
       f += (g26_xy_pos - m).magnitude() / 15.0f;
 
-      // Add the specified amount of Random Noise to our search
-      if (g26_random_deviation > 1.0) f += random(0.0, g26_random_deviation);
+   
 
       if (f < closest) {
         closest = f;          // Found a closer un-printed location
@@ -622,9 +623,9 @@ void GcodeSuite::G26() {
 
   // 'U' to Randomize and optionally set circle deviation
   if (parser.seen('U')) {
-    randomSeed(millis());
+   
     // This setting will persist for the next G26
-    g26_random_deviation = parser.has_value() ? parser.value_float() : 50.0;
+   g26_random_d = parser.has_value() ? parser.value_float() : 50.0;
   }
 
   // Get repeat from 'R', otherwise do one full circuit
@@ -738,7 +739,7 @@ void GcodeSuite::G26() {
         #define INTERSECTION_CIRCLE_DIAM  ((INTERSECTION_CIRCLE_RADIUS) * 2)
 
         xy_float_t e = { circle.x + INTERSECTION_CIRCLE_RADIUS, circle.y };
-        xyz_float_t s = e;
+       xyz_float_t s = { e };
 
         // Figure out where to start and end the arc - we always print counterclockwise
         float arc_length = ARC_LENGTH(4);

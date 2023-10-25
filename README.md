@@ -1,13 +1,4 @@
-Updates coming soon, working on documentation
-10/24/2023
-
-
-
-
-######################################################################################################  ORIGINAL README FROM AUBURN FORK #######################################################################################################
-
-######################################################################################################  ORIGINAL README FROM AUBURN FORK #######################################################################################################
-# Modified Kobra Go Firmware.
+# Modified Kobra Go Firmware
 
 I've added/enabled several features to make printing from Octoprint a better experience
 
