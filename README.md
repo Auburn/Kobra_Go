@@ -4,6 +4,7 @@
 Everything seems to be working currently, 
 I haven't had time to test that much yet but the ABL & UBL functions all seem to be intact. 
 Linear advanced seems to be working for me but again I need to test more. 
+
 I was able to fix a bunch of menu issues and other random issues when I noticed during a search for some information that a member named Auburn had created a fork, so I downloaded it and noticed he had fixed the UBL issues which I just had started working on.
 
 It also appears that the remaining LCD issues that I had not solved yet were also resolved, cheers Auburn.
@@ -22,9 +23,9 @@ I could probably tell stories for hours of Platform IO Hell right about now, but
 
 
 
-################################# Credit Below Goes To Auburn #################################
+########################## Credit Below Goes To Auburn ##########################
 
-################################# Credit Below Goes To Auburn #################################
+########################## Credit Below Goes To Auburn ##########################
 
 
 # Modified Kobra Go Firmware
