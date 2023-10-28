@@ -488,21 +488,21 @@ void menu_configuration() {
       #endif
     }
   #endif
-  //SUBMENU(MSG_ADVANCED_SETTINGS, menu_advanced_settings);
+SUBMENU(MSG_ADVANCED_SETTINGS, menu_advanced_settings);
   
 
-//  #if ENABLED(BABYSTEP_ZPROBE_OFFSET)
-//    SUBMENU(MSG_ZPROBE_ZOFFSET, lcd_babystep_zoffset);
-//  #elif HAS_BED_PROBE
-//    EDIT_ITEM(LCD_Z_OFFSET_TYPE, MSG_ZPROBE_ZOFFSET, &probe.offset.z, Z_PROBE_OFFSET_RANGE_MIN, Z_PROBE_OFFSET_RANGE_MAX);
-//  #endif
+  #if ENABLED(BABYSTEP_ZPROBE_OFFSET)
+    SUBMENU(MSG_ZPROBE_ZOFFSET, lcd_babystep_zoffset);
+  #elif HAS_BED_PROBE
+    EDIT_ITEM(LCD_Z_OFFSET_TYPE, MSG_ZPROBE_ZOFFSET, &probe.offset.z, Z_PROBE_OFFSET_RANGE_MIN, Z_PROBE_OFFSET_RANGE_MAX);
+  #endif
 
-  //
+
   // Set Fan Controller speed
-  //
-//  #if ENABLED(CONTROLLER_FAN_MENU)
-//    SUBMENU(MSG_CONTROLLER_FAN, menu_controller_fan);
-//  #endif
+
+#if ENABLED(CONTROLLER_FAN_MENU)
+    SUBMENU(MSG_CONTROLLER_FAN, menu_controller_fan);
+  #endif
 
   if (!busy) {
     #if EITHER(DELTA_CALIBRATION_MENU, DELTA_AUTO_CALIBRATION)
@@ -546,28 +546,28 @@ void menu_configuration() {
     SUBMENU(MSG_RETRACT, menu_config_retract);
   #endif
 
-//  #if HAS_FILAMENT_SENSOR
-//    EDIT_ITEM(bool, MSG_RUNOUT_SENSOR, &runout.enabled, runout.reset);
-//  #endif
+  #if HAS_FILAMENT_SENSOR
+    EDIT_ITEM(bool, MSG_RUNOUT_SENSOR, &runout.enabled, runout.reset);
+  #endif
 
-//  #if ENABLED(POWER_LOSS_RECOVERY)
-//    EDIT_ITEM(bool, MSG_OUTAGE_RECOVERY, &recovery.enabled, recovery.changed);
-//  #endif
+  #if ENABLED(POWER_LOSS_RECOVERY)
+    EDIT_ITEM(bool, MSG_OUTAGE_RECOVERY, &recovery.enabled, recovery.changed);
+  #endif
 
   // Preheat configurations
-//  #if PREHEAT_COUNT && DISABLED(SLIM_LCD_MENUS)
-//    LOOP_L_N(m, PREHEAT_COUNT)
-//      SUBMENU_N_S(m, ui.get_preheat_label(m), MSG_PREHEAT_M_SETTINGS, _menu_configuration_preheat_settings);
-//  #endif
+  #if PREHEAT_COUNT && DISABLED(SLIM_LCD_MENUS)
+    LOOP_L_N(m, PREHEAT_COUNT)
+      SUBMENU_N_S(m, ui.get_preheat_label(m), MSG_PREHEAT_M_SETTINGS, _menu_configuration_preheat_settings);
+  #endif
 
   #if ENABLED(SOUND_MENU_ITEM)
     EDIT_ITEM(bool, MSG_SOUND, &ui.buzzer_enabled, []{ ui.chirp(); });
   #endif
 
-//  #if ENABLED(EEPROM_SETTINGS)
-//    ACTION_ITEM(MSG_STORE_EEPROM, ui.store_settings);
-//    if (!busy) ACTION_ITEM(MSG_LOAD_EEPROM, ui.load_settings);
-//  #endif
+  #if ENABLED(EEPROM_SETTINGS)
+    ACTION_ITEM(MSG_STORE_EEPROM, ui.store_settings);
+    if (!busy) ACTION_ITEM(MSG_LOAD_EEPROM, ui.load_settings);
+  #endif
 
   if (!busy) ACTION_ITEM(MSG_RESTORE_DEFAULTS, ui.reset_settings);
 

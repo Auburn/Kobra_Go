@@ -195,7 +195,7 @@ typedef struct SettingsDataStruct {
 
   planner_settings_t planner_settings;
 
-  xyze_float_t planner_max_jerk;                        // M205 XYZE  planner.max_jerk
+xyze_pos_t max_jerk;                    // M205 XYZE  planner.max_jerk
   float planner_junction_deviation_mm;                  // M205 J     planner.junction_deviation_mm
 
   xyz_pos_t home_offset;                                // M206 XYZ / M665 TPZ
@@ -2523,20 +2523,31 @@ void MarlinSettings::reset() {
 
   #if HAS_CLASSIC_JERK
     #ifndef DEFAULT_XJERK
-      #define DEFAULT_XJERK 0
+      #define DEFAULT_XJERK 10
     #endif
     #ifndef DEFAULT_YJERK
-      #define DEFAULT_YJERK 0
+      #define DEFAULT_YJERK 10
     #endif
     #ifndef DEFAULT_ZJERK
-      #define DEFAULT_ZJERK 0
+      #define DEFAULT_ZJERK 10
     #endif
     planner.max_jerk.set(DEFAULT_XJERK, DEFAULT_YJERK, DEFAULT_ZJERK);
     TERN_(HAS_CLASSIC_E_JERK, planner.max_jerk.e = DEFAULT_EJERK;);
   #endif
 
   #if HAS_JUNCTION_DEVIATION
+    #ifndef DEFAULT_XJERK
+      #define DEFAULT_XJERK 10
+    #endif
+    #ifndef DEFAULT_YJERK
+      #define DEFAULT_YJERK 10
+    #endif
+    #ifndef DEFAULT_ZJERK
+      #define DEFAULT_ZJERK 10
+    #endif
     planner.junction_deviation_mm = float(JUNCTION_DEVIATION_MM);
+ planner.max_jerk.set(DEFAULT_XJERK, DEFAULT_YJERK, DEFAULT_ZJERK);
+  TERN_(HAS_CLASSIC_E_JERK, planner.max_jerk.e = DEFAULT_EJERK;);
   #endif
 
   #if HAS_SCARA_OFFSET
