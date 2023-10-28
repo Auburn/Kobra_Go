@@ -56,7 +56,9 @@
 
   // LCD probed points are from defaults
   constexpr uint8_t total_probe_points = TERN(AUTO_BED_LEVELING_3POINT, 3, GRID_MAX_POINTS);
-
+  static void ui.init();
+  static void ui.update();
+bool ui.should_draw = true; 
   //
   // Bed leveling is done. Wait for G29 to complete.
   // A flag is used so that this can release control
@@ -69,14 +71,16 @@
   // ** This blocks the command queue! **
   //
   void _lcd_level_bed_done() {
+      ui.update();
     if (!ui.wait_for_move) {
       #if Z_AFTER_PROBING > 0 && DISABLED(MESH_BED_LEVELING)
         // Display "Done" screen and wait for moves to complete
         line_to_z(Z_AFTER_PROBING);
         ui.synchronize(GET_TEXT(MSG_LEVEL_BED_DONE));
       #endif
-      ui.goto_previous_screen_no_defer();
+        ui.return_to_status();
       ui.completion_feedback();
+			ui.update();	
     }
     if (ui.should_draw()) MenuItem_static::draw(LCD_HEIGHT >= 4, GET_TEXT(MSG_LEVEL_BED_DONE));
     ui.refresh(LCDVIEW_CALL_REDRAW_NEXT);
@@ -88,7 +92,8 @@
   // Step 7: Get the Z coordinate, click goes to the next point or exits
   //
   void _lcd_level_bed_get_z() {
-
+    ui.should_draw = true; 
+    ui.update();
     if (ui.use_click()) {
 
       //
@@ -102,6 +107,7 @@
         //
         ui.wait_for_move = true;
         ui.goto_screen(_lcd_level_bed_done);
+        ui.update();
         #if ENABLED(MESH_BED_LEVELING)
           queue.inject_P(PSTR("G29S2"));
         #elif ENABLED(PROBE_MANUALLY)
@@ -110,7 +116,7 @@
       }
       else
         _lcd_level_goto_next_point();
-
+				ui.update();
       return;
     }
 
@@ -130,6 +136,7 @@
     if (ui.should_draw()) {
       const float v = current_position.z;
       MenuEditItemBase::draw_edit_screen(GET_TEXT(MSG_MOVE_Z), ftostr43sign(v + (v < 0 ? -0.0001f : 0.0001f), '+'));
+			ui.update();	
     }
   }
 
@@ -137,6 +144,8 @@
   // Step 6: Display "Next point: 1 / 9" while waiting for move to finish
   //
   void _lcd_level_bed_moving() {
+    ui.should_draw = true; 
+    void ui.update();
     if (ui.should_draw()) {
       char msg[10];
       sprintf_P(msg, PSTR("%i / %u"), int(manual_probe_index + 1), total_probe_points);
@@ -150,8 +159,9 @@
   // Step 5: Initiate a move to the next point
   //
   void _lcd_level_goto_next_point() {
+    ui.should_draw = true; 
     ui.goto_screen(_lcd_level_bed_moving);
-
+    void ui.update();
     // G29 Records Z, moves, and signals when it pauses
     ui.wait_for_move = true;
     #if ENABLED(MESH_BED_LEVELING)
@@ -166,8 +176,10 @@
   //         Move to the first probe position
   //
   void _lcd_level_bed_homing_done() {
+    ui.should_draw = true; 
     if (ui.should_draw()) {
       MenuItem_static::draw(1, GET_TEXT(MSG_LEVEL_BED_WAITING));
+      void ui.update();
       // Color UI needs a control to detect a touch
       #if BOTH(TOUCH_SCREEN, HAS_GRAPHICAL_TFT)
         touch.add_control(CLICK, 0, 0, TFT_WIDTH, TFT_HEIGHT);
@@ -183,7 +195,9 @@
   // Step 3: Display "Homing XYZ" - Wait for homing to finish
   //
   void _lcd_level_bed_homing() {
+    ui.should_draw = true; 
     _lcd_draw_homing();
+    void ui.update();
     if (all_axes_homed()) ui.goto_screen(_lcd_level_bed_homing_done);
   }
 
@@ -195,9 +209,11 @@
   // Step 2: Continue Bed Leveling...
   //
   void _lcd_level_bed_continue() {
+    ui.should_draw = true; 
     ui.defer_status_screen();
     set_all_unhomed();
     ui.goto_screen(_lcd_level_bed_homing);
+    void ui.update();
     queue.inject_P(G28_STR);
   }
 
@@ -240,9 +256,8 @@ void leveing_probeing()
    int16_t hotend_targetTemperature =   thermalManager.temp_hotend[0].target;
    int16_t bed_currenttTemperature =   thermalManager.temp_bed.celsius;
    int16_t bed_targetTemperature =   thermalManager.temp_bed.target;
-	 
 	 ui.defer_status_screen();
-	 
+ 
 	if(ui.should_draw())
 	{
 		if(ui.preheating_start == false && ui.preheating_stop == false)
@@ -292,17 +307,14 @@ void leveing_probeing()
 
 	}
 	ui.refresh(LCDVIEW_CALL_REDRAW_NEXT);
-
 }
 
-void begin_bed_lever()
-{
+void begin_bed_lever() {
 	ui.is_leveing = true; // The status page is not returned when remove sd card
     queue.inject_P(PSTR("M851 Z0\nG28\nG29"));
-   	//ui.return_to_status();
-   	ui.goto_screen(leveing_probeing);
-	
-   	
+   	ui.return_to_status();
+   	//ui.goto_screen(leveing_probeing);
+    ui.update();	
 }
 
 void cancel_leveing() {
@@ -334,7 +346,7 @@ void menu_bed_leveling() {
              is_valid = leveling_is_valid();
 
   START_MENU();
-  BACK_ITEM(MSG_MOTION);
+  BACK_ITEM(MSG_BACK);
 
   // Auto Home if not using manual probing
   #if NONE(PROBE_MANUALLY, MESH_BED_LEVELING)
