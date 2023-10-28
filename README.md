@@ -1,4 +1,45 @@
+# **Anycubic Kobra Go Marlin Firmware**
+ **_Tons of fixes and improvements_**
+  Lots More to Come
 
+> 
+
+# **Hardware Updates & News**
+## ( Anycubic TriGorilla / HSDC HC32F460 / HC32F460KECA )
+Yes, it's the lower memory HC32F460KECA not HC32F460KETA 
+Thats why you see the weird memory offset hack in the Linker file
+
+- Updates and improvements to the hardware support stack
+- Fixed all the broken HSDC Packs
+- Download, Install and watch the repo schema come back to life
+- https://github.com/OrloDavid/HC32F460
+- This allowed updated to the Keil  build environment tools
+- I will be uploading more hardware / processor specific files in the near future along with translated source material
+- 
+- Modified systems clocks, wasn't worth the effort :(  Reverted
+
+
+# **Software Updates & News**
+## **( Marlin 2.0.x Bugfix  + 2.1.x Bugfix Updates)**
+Get the software here
+https://github.com/OrloDavid/Any-Ko-Go
+Prebuilt Firmware files coming soon
+TONS of ABL & UBL Fixes
+Broken links, missing files, functions, classes and so on
+LCD Menu options are nearly completely restored with every option you could ever want!
+Linear Advance fixed and updated where code was missing or broken
+Every fix I have done has been a proper implementation fix
+When an in-place fix wasn't possible, the code was migrated and updated as far as possible
+
+
+Thanks to Auburn for his work on the following 
+
+UBL Initial fixes
+Quick Home
+M117 & M73 LCD Status fixes
+Many UI Fixes
+and more
+https://github.com/Auburn/Kobra_Go
 ######################################## V1 Edits ########################################
 
 Everything seems to be working currently, 
