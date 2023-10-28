@@ -1,9 +1,10 @@
-# **Anycubic Kobra Go / Neo Source Files & Firmware**
+# **AnyCubic Kobra Go / Neo  TriGorilla Gen_V.3.0.7**
+# Source Files & Firmware
  **_Tons of fixes and improvements_**
   Lots More to Come
 
 # **Hardware Updates & News**
-## ( Anycubic TriGorilla / HSDC HC32F460 / HC32F460KECA )
+## ( HSDC / XHSC / HC32F460 HC32F460KECA )
 - Yes, it's the lower memory HC32F460KECA not HC32F460KETA
 - Thats why you see the weird memory offset hack in the Linker file
 
@@ -28,7 +29,19 @@
 + When an in-place fix wasn't possible, the code was migrated and updated as far as possible
 
 
-### Thanks to Auburn for his work on the following 
+![IMG_20231028_122144~2](https://github.com/OrloDavid/Any-Ko-Go/assets/26681128/ebfd3f69-85e9-4f17-9ff3-14ba18604051)
+
+![IMG_20231028_122159~3](https://github.com/OrloDavid/Any-Ko-Go/assets/26681128/6e0e1404-5a6d-4b43-8158-0f3bd4195d9a)
+
+![IMG_20231028_115926](https://github.com/OrloDavid/Any-Ko-Go/assets/26681128/00af546c-3c7e-4eea-85a0-58ba34c152ff)
+
+![IMG_20231028_115913](https://github.com/OrloDavid/Any-Ko-Go/assets/26681128/ae592034-aa54-41f1-9dfb-b73b6c81c10c)
+
+![IMG_20231028_121012~2](https://github.com/OrloDavid/Any-Ko-Go/assets/26681128/76d31683-da6c-4ea7-8ec7-8b277c0944f2)
+
+
+
+### Thanks to [Auburn](https://github.com/Auburn) for his work on the following 
 
 + UBL Initial fixes
 + Quick Home
@@ -38,7 +51,7 @@
 
 
 
-# %%%% Credit Below Goes To Auburn %%%%
+# %%%% Credit Below Goes To [Auburn](https://github.com/Auburn/Kobra_Go) %%%%
 
 [Jordan Peck / Auburn ](https://github.com/Auburn)
 
