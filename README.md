@@ -1,4 +1,4 @@
-# **Anycubic Kobra Go Marlin Firmware**
+# **Anycubic Kobra Go / Neo Source Files & Firmware**
  **_Tons of fixes and improvements_**
   Lots More to Come
 
@@ -64,16 +64,16 @@ I could probably tell stories for hours of Platform IO Hell right about now, but
 
 
 
-########################## Credit Below Goes To Auburn ##########################
+# %%%% Credit Below Goes To Auburn %%%%
 
-########################## Credit Below Goes To Auburn ##########################
+# @github/Auburn
 
 
-# Modified Kobra Go Firmware
+## Modified Kobra Go Firmware
 
 I've added/enabled several features to make printing from Octoprint a better experience
 
-## Extra Features
+### Extra Features
 
 - Enable "Quick Home", home X & Y at the same time
 - Increased default max acceleration limits
@@ -100,7 +100,7 @@ This mostly works, some parts of the LCD UI have navigation issues so it's recom
 Saving UBL meshes is what caused the most issues, they seem to get corrupted when saved to the EEPROM so avoid doing this.
 Instead you can save it to GCode using `G29 S-1`
 
-## Notes
+### Notes
 
 You will need to recalibrate your E steps after applying this firmware it will be off by a factor of ~2
 
