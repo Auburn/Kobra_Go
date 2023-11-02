@@ -4,8 +4,8 @@
   Lots More to Come
 
 # **Hardware Updates & News**
-## ( HSDC / XHSC / HC32F460 HC32F460KECA )
-- Yes, it's the lower memory HC32F460KECA not HC32F460KETA
+## ( HSDC / XHSC / HC32F460 HC32F460KCTA )
+- Yes, it's the lower memory HC32F460KCTA not HC32F460KETA
 - Thats why you see the weird memory offset hack in the Linker file
 
 * Updates and improvements to the hardware support stack
