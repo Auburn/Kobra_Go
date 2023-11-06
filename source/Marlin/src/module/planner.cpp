@@ -70,7 +70,7 @@
 #include "../gcode/parser.h"
 
 #include "../MarlinCore.h"
-xyze_pos_t Planner::max_jerk;  
+
 #if HAS_LEVELING
   #include "../feature/bedlevel/bedlevel.h"
 #endif
@@ -144,13 +144,11 @@ float Planner::steps_to_mm[XYZE_N];             // (mm) Millimeters per step
   float Planner::junction_deviation_mm;         // (mm) M205 J
   #if HAS_LINEAR_E_JERK
     float Planner::max_e_jerk[DISTINCT_E];      // Calculated from junction_deviation_mm
-static xyze_pos_t max_jerk;
-
   #endif
 #endif
 
 #if HAS_CLASSIC_JERK
-static xyze_pos_t max_jerk;
+  TERN(HAS_LINEAR_E_JERK, xyz_pos_t, xyze_pos_t) Planner::max_jerk;
 #endif
 
 #if ENABLED(SD_ABORT_ON_ENDSTOP_HIT)

@@ -198,12 +198,12 @@ void GcodeSuite::M205() {
           SERIAL_ECHOLNPGM("WARNING! Low Z Jerk may lead to unwanted pauses.");
       #endif
     }
-   #if HAS_CLASSIC_E_JERK
+    #if HAS_CLASSIC_E_JERK
       if (parser.seen('E')) planner.set_max_jerk(E_AXIS, parser.value_linear_units());
     #endif
- #endif
-
-					if (!parser.seen("BSTXYZE")) {
+  #endif
+		
+			if (!parser.seen("BSTXYZE")) {
     SERIAL_ECHOPAIR("Advanced Settings: B", planner.settings.min_segment_time_us);
     SERIAL_ECHOPAIR(" S", planner.settings.min_feedrate_mm_s);	
 		SERIAL_ECHOPAIR(" T", planner.settings.min_travel_feedrate_mm_s);	 

@@ -52,6 +52,38 @@
 #define ARDUINO 100
 #endif
 
+
+#ifdef redefined
+#define SERIAL_USB
+#endif
+
+#ifdef redefined
+#define ARDUINO_ARCH_STM32
+#endif
+
+#ifdef redefined
+#define ARDUINO_ARCH_STM32F1
+#endif
+
+#ifdef redefined
+#define STM32_HIGH_DENSITY
+#endif
+#ifndef __cplusplus
+#define __cplusplus
+#endif
+
+#ifdef redefined
+#define MCU_STM32F103RC
+#endif
+
+#ifdef redefined
+#define __GNUC__
+#endif
+
+#ifndef ARDUINO
+#define ARDUINO 100
+#endif
+
 /**
  * Configuration.h
  *
@@ -102,7 +134,7 @@
 
 // Author info of this build printed to the host during boot and M115
 #define STRING_CONFIG_H_AUTHOR "(David Orlo)" // Who made the changes.
-#define CUSTOM_VERSION_FILE src/inc/version.h // Path from the root directory (no quotes)
+#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
  * *** VENDORS PLEASE READ ***
@@ -163,7 +195,7 @@
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define CUSTOM_MACHINE_NAME "Any-Ko-Go"
+#define CUSTOM_MACHINE_NAME "Any-Ko_Go"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
@@ -787,11 +819,11 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 1000, 1000, 15, 1000 }
+#define DEFAULT_MAX_ACCELERATION      { 1000, 1000, 15, 3800 }
 
-//#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
+#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
-  #define MAX_ACCEL_EDIT_VALUES       { 1800, 1800, 45, 3000 } // ...or, set your own edit limits
+  #define MAX_ACCEL_EDIT_VALUES       { 1800, 1800, 45, 20000 } // ...or, set your own edit limits
 #endif
 
 /**
@@ -803,7 +835,7 @@
  *   M204 T    Travel Acceleration
  */
 #define DEFAULT_ACCELERATION          750     // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  750    // E acceleration for retracts
+#define DEFAULT_RETRACT_ACCELERATION  9000    // E acceleration for retracts
 #define DEFAULT_TRAVEL_ACCELERATION   1000    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
@@ -814,12 +846,12 @@
  * When changing speed and direction, if the difference is less than the
  * value set here, it may happen instantaneously.
  */
-//#define CLASSIC_JERK
+#define CLASSIC_JERK
 #if ENABLED(CLASSIC_JERK)
   #define DEFAULT_XJERK  8
   #define DEFAULT_YJERK  8
   #define DEFAULT_ZJERK  0.3
-#define DEFAULT_EJERK  10   
+
   //#define TRAVEL_EXTRA_XYJERK 0.0     // Additional jerk allowance for all travel moves
 
 //  #define LIMITED_JERK_EDITING        // Limit edit via M205 or LCD to DEFAULT_aJERK * 2
@@ -828,7 +860,7 @@
   #endif
 #endif
 
-
+#define DEFAULT_EJERK    6.0  // May be used by Linear Advance
 
 /**
  * Junction Deviation Factor
@@ -840,8 +872,7 @@
 #if DISABLED(CLASSIC_JERK)
   #define JUNCTION_DEVIATION_MM 0.01 // (mm) Distance from real junction edge
   #define JD_HANDLE_SMALL_SEGMENTS    // Use curvature estimation instead of just the junction angle
-
-#define DEFAULT_EJERK  15   // You're still jerkin it                                 
+                                      // for small segments (< 1mm) with large junction angles (> 135°).
 #endif
 
 /**
@@ -1373,7 +1404,7 @@
  * Turn on with the command 'M111 S32'.
  * NOTE: Requires a lot of PROGMEM!
  */
-//#define DEBUG_LEVELING_FEATURE
+#define DEBUG_LEVELING_FEATURE
 
 #if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_BILINEAR, AUTO_BED_LEVELING_UBL)
   // Gradually reduce leveling correction until a set height is reached,
@@ -1397,9 +1428,9 @@
   #if ENABLED(G26_MESH_VALIDATION)
     #define MESH_TEST_NOZZLE_SIZE    0.4  // (mm) Diameter of primary nozzle.
     #define MESH_TEST_LAYER_HEIGHT   0.2  // (mm) Default layer height for the G26 Mesh Validation Tool.
-    #define MESH_TEST_HOTEND_TEMP  195    // (°C) Default nozzle temperature for the G26 Mesh Validation Tool.
-    #define MESH_TEST_BED_TEMP      65    // (°C) Default bed temperature for the G26 Mesh Validation Tool.
-    #define G26_XY_FEEDRATE         45    // (mm/s) Feedrate for XY Moves for the G26 Mesh Validation Tool.
+    #define MESH_TEST_HOTEND_TEMP  205    // (°C) Default nozzle temperature for the G26 Mesh Validation Tool.
+    #define MESH_TEST_BED_TEMP      60    // (°C) Default bed temperature for the G26 Mesh Validation Tool.
+    #define G26_XY_FEEDRATE         28    // (mm/s) Feedrate for XY Moves for the G26 Mesh Validation Tool.
     #define G26_RETRACT_MULTIPLIER   1.0  // G26 Q (retraction) used by default between mesh test elements.
   #endif
 
@@ -1424,7 +1455,7 @@
     // Experimental Subdivision of the grid by Catmull-Rom method.
     // Synthesizes intermediate points to produce a more detailed mesh.
     //
-    #define ABL_BILINEAR_SUBDIVISION
+    //#define ABL_BILINEAR_SUBDIVISION
     #if ENABLED(ABL_BILINEAR_SUBDIVISION)
       // Number of subdivisions between probe points
       #define BILINEAR_SUBDIVISIONS 3
@@ -1438,10 +1469,10 @@
   //========================= Unified Bed Leveling ============================
   //===========================================================================
 
- // #define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
+  //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
   #define MESH_INSET 1              // Set Mesh bounds as an inset region of the bed
-  #define GRID_MAX_POINTS_X 7      // Don't use more than 15 points per axis, implementation limited.
+  #define GRID_MAX_POINTS_X 10      // Don't use more than 15 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   #define UBL_MESH_EDIT_MOVES_Z     // Sophisticated users prefer no movement of nozzle
@@ -1460,7 +1491,7 @@
   #define GRID_MAX_POINTS_X 5   // Don't use more than 7 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
-  #define MESH_G28_REST_ORIGIN // After homing all axes ('G28' or 'G28 XYZ') rest Z at Z_MIN_POS
+  //#define MESH_G28_REST_ORIGIN // After homing all axes ('G28' or 'G28 XYZ') rest Z at Z_MIN_POS
 
 #endif // BED_LEVELING
 
@@ -1515,7 +1546,7 @@
  * Commands to execute at the end of G29 probing.
  * Useful to retract or move the Z probe out of the way.
  */
- #define Z_PROBE_END_SCRIPT "G1 Z5 \nG28 \nM104 S0 \nM140 S0"
+#define Z_PROBE_END_SCRIPT "M500\nM104 S0\nM140 S0\nG28"
 
 // @section homing
 
@@ -1545,7 +1576,7 @@
 #endif
 
 // Homing speeds (mm/min)
-#define HOMING_FEEDRATE_MM_M { (100*60), (100*60), (15*60) }
+#define HOMING_FEEDRATE_MM_M { (120*60), (120*60), (15*60) }
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
@@ -1723,42 +1754,38 @@
  *   Caveats: The ending Z should be the same as starting Z.
  * Attention: EXPERIMENTAL. G-code arguments may change.
  */
+//#define NOZZLE_CLEAN_FEATURE
 
-
-// #define NOZZLE_CLEAN_FEATURE  //Need G12 Defined
 #if ENABLED(NOZZLE_CLEAN_FEATURE)
-  #define NOZZLE_CLEAN_PATTERN_LINE     // Provide 'G12 P0' - a simple linear cleaning pattern
-  #define NOZZLE_CLEAN_PATTERN_ZIGZAG   // Provide 'G12 P1' - a zigzag cleaning pattern
-  #define NOZZLE_CLEAN_PATTERN_CIRCLE   // Provide 'G12 P2' - a circular cleaning pattern
+  // Default number of pattern repetitions
+  #define NOZZLE_CLEAN_STROKES  12
 
-  // Default pattern to use when 'P' is not provided to G12. One of the enabled options above.
-  #define NOZZLE_CLEAN_DEFAULT_PATTERN 1
-
-  #define NOZZLE_CLEAN_STROKES     9   // Default number of pattern repetitions
-
-  #if ENABLED(NOZZLE_CLEAN_PATTERN_ZIGZAG)
-    #define NOZZLE_CLEAN_TRIANGLES  6   // Default number of triangles
-  #endif
+  // Default number of triangles
+  #define NOZZLE_CLEAN_TRIANGLES  3
 
   // Specify positions for each tool as { { X, Y, Z }, { X, Y, Z } }
   // Dual hotend system may use { {  -20, (Y_BED_SIZE / 2), (Z_MIN_POS + 1) },  {  420, (Y_BED_SIZE / 2), (Z_MIN_POS + 1) }}
   #define NOZZLE_CLEAN_START_POINT { {  30, 30, (Z_MIN_POS + 1) } }
   #define NOZZLE_CLEAN_END_POINT   { { 100, 60, (Z_MIN_POS + 1) } }
 
-  #if ENABLED(NOZZLE_CLEAN_PATTERN_CIRCLE)
-    #define NOZZLE_CLEAN_CIRCLE_RADIUS 6.5                      // (mm) Circular pattern radius
-    #define NOZZLE_CLEAN_CIRCLE_FN 10                           // Circular pattern circle number of segments
-    #define NOZZLE_CLEAN_CIRCLE_MIDDLE NOZZLE_CLEAN_START_POINT // Middle point of circle
-  #endif
-  
+  // Circular pattern radius
+  #define NOZZLE_CLEAN_CIRCLE_RADIUS 6.5
+  // Circular pattern circle fragments number
+  #define NOZZLE_CLEAN_CIRCLE_FN 10
+  // Middle point of circle
+  #define NOZZLE_CLEAN_CIRCLE_MIDDLE NOZZLE_CLEAN_START_POINT
+
+  // Move the nozzle to the initial position after cleaning
+  #define NOZZLE_CLEAN_GOBACK
+
   // For a purge/clean station that's always at the gantry height (thus no Z move)
-  #define NOZZLE_CLEAN_NO_Z
+  //#define NOZZLE_CLEAN_NO_Z
 
   // For a purge/clean station mounted on the X axis
   //#define NOZZLE_CLEAN_NO_Y
 
   // Require a minimum hotend temperature for cleaning
-  #define NOZZLE_CLEAN_MIN_TEMP 190
+  #define NOZZLE_CLEAN_MIN_TEMP 170
   //#define NOZZLE_CLEAN_HEATUP       // Heat up the nozzle instead of skipping wipe
 
   // Explicit wipe G-code script applies to a G12 with no arguments.
@@ -1795,7 +1822,7 @@
  *
  * View the current statistics with M78.
  */
-#define PRINTCOUNTER
+//#define PRINTCOUNTER
 
 /**
  * Password

@@ -232,7 +232,7 @@ struct XYval {
   FI XYval<int32_t>   ROUNDL()                    const { return { int32_t(LROUND(x)), int32_t(LROUND(y)) }; }
   FI XYval<float>    asFloat()                          { return {   float(x),   float(y) }; }
   FI XYval<float>    asFloat()                    const { return {{{ float(x),   float(y) }}}; }
-  FI XYval<float> reciprocal()                    const { return {{{_RECIP(x), _RECIP(y)  }}}; }
+  FI XYval<float> reciprocal()                    const { return {  _RECIP(x),  _RECIP(y) }; }
   FI XYval<float>  asLogical()                    const { XYval<float> o = asFloat(); toLogical(o); return o; }
   FI XYval<float>   asNative()                    const { XYval<float> o = asFloat(); toNative(o);  return o; }
   FI operator XYZval<T>()                               { return { x, y }; }
