@@ -1,43 +1,19 @@
 # **AnyCubic Kobra Go / Neo  TriGorilla Gen_V.3.0.7**
 # Source Files & Firmware
- **_Tons of fixes and improvements_**
-  Lots More to Come
+Fixed 
+ABL  EXTRAPOLATE_BEYOND_GRID
+ABL_BILINEAR_SUBDIVISION
+Many Menun Options
 
-# **Hardware Updates & News**
-## ( HSDC / XHSC / HC32F460 HC32F460KCTA )
-- Yes, it's the lower memory HC32F460KCTA not HC32F460KETA
-- Thats why you see the weird memory offset hack in the Linker file
+Not working
+UBL Mesh Saving & Loading
+Driver current doesn't report correct until edited
+Acceleration in menu is missing last digit
+Linear advance shows settings but printer ignores them
 
-* Updates and improvements to the hardware support stack
-* [Fixed all the broken HSDC Packs](https://github.com/OrloDavid/HC32F460)
-* Download, Install and watch the repo schema come back to life
-* This allowed updated to the Keil  build environment tools
-* I will be uploading more hardware / processor specific files in the near future along with translated source material
-* Modified systems clocks, but wasn't worth the effort :(  Reverted
-
-
-# **Software Updates & News**
-## **( Marlin 2.0.x Bugfix  + 2.1.x Bugfix Updates)**
-+ Get the software here
-+ https://github.com/OrloDavid/Any-Ko-Go
-+ Prebuilt Firmware files coming soon
-+ TONS of ABL & UBL Fixes
-+ Broken links, missing files, functions, classes and so on
-+ LCD Menu options are nearly completely restored with every option you could ever want!
-+ Linear Advance fixed and updated where code was missing or broken
-+ Every fix I have done has been a proper implementation fix
-+ When an in-place fix wasn't possible, the code was migrated and updated as far as possible
-
-
-![IMG_20231028_122144~2](https://github.com/OrloDavid/Any-Ko-Go/assets/26681128/ebfd3f69-85e9-4f17-9ff3-14ba18604051)
-
-![IMG_20231028_122159~3](https://github.com/OrloDavid/Any-Ko-Go/assets/26681128/6e0e1404-5a6d-4b43-8158-0f3bd4195d9a)
-
-![IMG_20231028_115926](https://github.com/OrloDavid/Any-Ko-Go/assets/26681128/00af546c-3c7e-4eea-85a0-58ba34c152ff)
-
-![IMG_20231028_115913](https://github.com/OrloDavid/Any-Ko-Go/assets/26681128/ae592034-aa54-41f1-9dfb-b73b6c81c10c)
-
-![IMG_20231028_121012~2](https://github.com/OrloDavid/Any-Ko-Go/assets/26681128/76d31683-da6c-4ea7-8ec7-8b277c0944f2)
+Untested
+Runout sensor from menu
+Power Outage from menu
 
 
 
@@ -47,7 +23,6 @@
 + Quick Home
 + M117 & M73 LCD Status fixes
 + Many UI Fixes
-+ and more
 
 
 

@@ -53,36 +53,12 @@
 #endif
 
 
-#ifdef redefined
-#define SERIAL_USB
-#endif
 
-#ifdef redefined
-#define ARDUINO_ARCH_STM32
-#endif
 
-#ifdef redefined
-#define ARDUINO_ARCH_STM32F1
-#endif
 
-#ifdef redefined
-#define STM32_HIGH_DENSITY
-#endif
-#ifndef __cplusplus
-#define __cplusplus
-#endif
 
-#ifdef redefined
-#define MCU_STM32F103RC
-#endif
 
-#ifdef redefined
-#define __GNUC__
-#endif
 
-#ifndef ARDUINO
-#define ARDUINO 100
-#endif
 
 /**
  * Configuration.h
@@ -133,8 +109,8 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(David Orlo)" // Who made the changes.
-#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
+#define STRING_CONFIG_H_AUTHOR "(none, default config)" // Who made the changes.
+//#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
  * *** VENDORS PLEASE READ ***
@@ -557,7 +533,7 @@
   #else
     #define DEFAULT_Kp  13.43
     #define DEFAULT_Ki  0.69
-    #define DEFAULT_Kd 	65.58
+    #define DEFAULT_Kd  65.58
   #endif
 #endif // PIDTEMP
 
@@ -806,7 +782,7 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 32, 40 }     
+#define DEFAULT_MAX_FEEDRATE          { 300, 300, 32, 40 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -850,7 +826,7 @@
 #if ENABLED(CLASSIC_JERK)
   #define DEFAULT_XJERK  8
   #define DEFAULT_YJERK  8
-  #define DEFAULT_ZJERK  0.3
+  #define DEFAULT_ZJERK 5
 
   //#define TRAVEL_EXTRA_XYJERK 0.0     // Additional jerk allowance for all travel moves
 
@@ -1872,7 +1848,7 @@
  * :{ 'en':'English', 'an':'Aragonese', 'bg':'Bulgarian', 'ca':'Catalan', 'cz':'Czech', 'da':'Danish', 'de':'German', 'el':'Greek', 'el_gr':'Greek (Greece)', 'es':'Spanish', 'eu':'Basque-Euskera', 'fi':'Finnish', 'fr':'French', 'gl':'Galician', 'hr':'Croatian', 'hu':'Hungarian', 'it':'Italian', 'jp_kana':'Japanese', 'ko_KR':'Korean (South Korea)', 'nl':'Dutch', 'pl':'Polish', 'pt':'Portuguese', 'pt_br':'Portuguese (Brazilian)', 'ro':'Romanian', 'ru':'Russian', 'sk':'Slovak', 'tr':'Turkish', 'uk':'Ukrainian', 'vi':'Vietnamese', 'zh_CN':'Chinese (Simplified)', 'zh_TW':'Chinese (Traditional)', 'test':'TEST' }
  */
 #define LCD_LANGUAGE zh_CN
-#define LCD_LANGUAGE_AUTO_SAVE 
+#define LCD_LANGUAGE_AUTO_SAVE
 #define LCD_LANGUAGE_2 en
 /**
  * LCD Character Set
